@@ -1,9 +1,8 @@
 <?php 
-
 session_start();
 require_once 'config.php';
 require_once 'model/DAO/classes/connection.php';
-require_once 'model/DAO/classes/adminDAO.php';
+require_once 'model/DAO/adminDAO.php';
 
 //check if the user is already logged in
 if(isset($_SESSION['admin'])){
@@ -21,10 +20,10 @@ else if(isset($_POST['username']) && isset($_POST['password'])){
         $_SESSION['admin'] = $admin;
         header('Location: admin.php');
     } else {
-        header('Location: index.php');
+        $_SESSION['error'] = 'Invalid username or password';
+        header('Location: login.php');
     }
 } else {
-    //print the login form
+    include 'views/login.php';
 }
-
 ?>
