@@ -1,5 +1,5 @@
 <?php
-include_once 'controller/controller.php';
+include_once 'controllers/controller.php';
 
 check_login();
 ?>
