@@ -33,6 +33,16 @@ class AdminDAO {
         }
         return null;
     }
+
+    public function login($username, $password){
+        $admin = $this->getAdmin($username, $password);
+        if($admin){
+            session_start();
+            $_SESSION['admin'] = $admin;
+            return true;
+        }
+        return false;
+    }
 }
 
 ?>
