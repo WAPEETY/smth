@@ -1,5 +1,7 @@
 <?php
 
+require_once 'model/DAO/classes/connection.php';
+
 class AdminDAO {
     private $connection;
     

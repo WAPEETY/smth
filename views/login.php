@@ -1,5 +1,7 @@
 <!--WARNING: the license of the page is unknown, idk if it's compliant with ours in case that's the source link: https://tailwindcomponents.com/component/dark-login-page-->
-<div class="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center sm:pt-0">
+<?php require_once 'import.php'; ?>
+
+    <div class="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center sm:pt-0">
     <a href="#">
         <div class="text-foreground font-semibold text-2xl tracking-tighter mx-auto flex items-center gap-2">
             <div>
