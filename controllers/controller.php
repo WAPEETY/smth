@@ -1,9 +1,9 @@
 <?php
 
-check_login(){
+function check_login(){
+    session_start();
     $page = basename($_SERVER['PHP_SELF']);
 
-    session_start();
     require_once 'config.php';
     require_once 'model/DAO/classes/connection.php';
     require_once 'model/DAO/adminDAO.php';
@@ -29,7 +29,7 @@ check_login(){
     }
 }
 
-launch_404(){
+function launch_404(){
     header('Location: 404.php');
 }
 

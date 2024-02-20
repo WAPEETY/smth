@@ -23,7 +23,7 @@
                 </p>
             </div>
             <div class="p-6 pt-0">
-                <form action="controller/login.php" method="post">
+                <form action="/login.php" method="post">
                     <div>
                         <div>
                             <div
