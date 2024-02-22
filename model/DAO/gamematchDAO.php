@@ -16,7 +16,9 @@ class GameMatchDAO {
 
         $gameMatch->setName(htmlspecialchars($gameMatch->getName()));
 
-        $stmt->bindParam(':name', $gameMatch->getName());
+        $name = $gameMatch->getName();
+
+        $stmt->bindParam(':name', $name);
         $stmt->execute();
     }
 
