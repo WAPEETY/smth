@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_match'])) {
 -->
 
 <h2>Create a Match</h2>
-    <form method="post" action="POST">
+    <form method="POST" action="admin.php">
         <label for="match_name">Match Name:</label>
         <input type="text" id="match_name" name="match_name">
         <button type="submit" name="create_match">Create Match</button>
