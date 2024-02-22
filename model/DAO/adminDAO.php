@@ -19,17 +19,16 @@ class AdminDAO {
         $stmt->execute();
         $stmt->close();
     }
-    
+
     public function getAdmin($username, $password){
         $sql = "SELECT * FROM admin WHERE name = ? LIMIT 1";
         $stmt = $this->connection->prepare($sql);
-        $stmt->bind_param('s', $username);
+        $stmt->bindParam(1, $username, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $admin = $result->fetch_assoc();
-        if($admin){
-            if(password_verify($password, $admin['password'])){
-                return new Admin($admin['id'], $admin['name'], $admin['password'], true);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result){
+            if(password_verify($password, $result['password'])){
+                return new Admin($result['id'], $result['name'], $result['password'], true);
             }
         }
         return null;
