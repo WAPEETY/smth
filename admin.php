@@ -11,7 +11,11 @@
 
 <?php
 require_once 'model/DAO/classes/connection.php';
+require_once 'model/DAO/classes/gamematch.php';
+require_once 'model/DAO/gamematchDAO.php';
 
+
+// READ DATABASE
 try {
     $conn = Connection::getConnection();
 
@@ -63,6 +67,20 @@ try {
     // Handle database connection errors
     echo "Error: " . $e->getMessage();
 }
+
+
+// CREATE GAMEMATCH
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_match'])) {
+    $gameMatchName = $_POST['match_name'];
+    $gameMatchDAO = new GameMatchDAO();
+    $gameMatch = new GameMatch(null, $gameMatchName);
+    $gameMatchDAO->createGameMatch($gameMatch);
+    header("Location: admin.php");
+    exit();
+}
+
+
+
 ?>
 
 <!-- insert values in database, only for testing purposes 
@@ -104,6 +122,13 @@ try {
     <button type="submit">Add Team</button>
 </form>
 -->
+
+<h2>Create a Match</h2>
+    <form method="post" action="POST">
+        <label for="match_name">Match Name:</label>
+        <input type="text" id="match_name" name="match_name">
+        <button type="submit" name="create_match">Create Match</button>
+    </form>
 
 
 
