@@ -1,0 +1,2 @@
+su ogni create usa
+gameMatch->setName(htmlspecialchars($gameMatch->getName()));
