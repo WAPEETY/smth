@@ -1,13 +1,14 @@
 <?php
 
 require_once 'model/DAO/classes/connection.php';
+require_once 'model/DAO/classes/admin.php';
 
 class AdminDAO {
     private $connection;
     
     public function __construct(){
-        $this->connection = new Connection();
-    }
+        $this->connection = Connection::getConnection();
+    }  
 
     #maybe i'll remove this function, it's not necessary
     public function createAdmin($admin){
@@ -37,7 +38,6 @@ class AdminDAO {
     public function login($username, $password){
         $admin = $this->getAdmin($username, $password);
         if($admin){
-            session_start();
             $_SESSION['admin'] = $admin;
             return true;
         }
