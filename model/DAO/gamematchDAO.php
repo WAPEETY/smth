@@ -1,7 +1,10 @@
 <?
 
-require_once 'model/DAO/classes/connection.php';
-require_once 'model/DAO/classes/gamematch.php';
+
+$server_root = $_SERVER['DOCUMENT_ROOT'];
+
+require_once $server_root . '/model/DAO/classes/connection.php';
+require_once $server_root . '/model/DAO/classes/gamematch.php';
 
 class GameMatchDAO {
     private $connection;
