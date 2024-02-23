@@ -22,12 +22,13 @@ require_once 'views/match.php';
 $gameMatchDAO = new GameMatchDAO();
 $gameMatches = $gameMatchDAO->getGameMatches();
 
-?><div class="flex"><?php
+?><div class="flex flex-wrap"><?php
 foreach($gameMatches as $gameMatch){
     ?> <div> <?php
-    printMatch($gameMatch);
+    printMatch($gameMatch, true);
     ?> </div> <?php
 }
+createMatchForm();
 ?></div><?php
 
 //STARTING AGAIN LEGACY CODE READ DATABASE
