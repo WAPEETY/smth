@@ -17,7 +17,7 @@ require_once 'model/DAO/classes/gamematch.php';
 //new code
 require_once 'model/DAO/classes/gamematch.php';
 require_once 'model/DAO/gamematchDAO.php';
-require_once 'view/match.php';
+require_once 'views/match.php';
 
 $gameMatchDAO = new GameMatchDAO();
 $gameMatches = $gameMatchDAO->getGameMatches();
