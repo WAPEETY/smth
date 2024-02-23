@@ -5,7 +5,7 @@ require_once 'import.php';
 function printMatch($match, $printTeams = false){
     ?>
     <div
-  class="absolute max-w-[26rem] whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
+  class="whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
 >
   <div class="mb-2 flex items-center gap-3">
     <a
