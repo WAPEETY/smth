@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'controllers/controller.php';
+require_once 'controller.php';
 require_once 'model/DAO/classes/gamematch.php';
 
 check_login();
