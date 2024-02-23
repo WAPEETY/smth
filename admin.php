@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SMTH - Admin Panel</title>
 </head>
 <body>
     aaaaa <br>    
 <a href="logout.php">Logout</a>
 
 <?php
+//legacy code
 require_once 'model/DAO/classes/connection.php';
 require_once 'model/DAO/classes/gamematch.php';
+
+//new code
+require_once 'model/DAO/classes/gamematch.php';
 require_once 'model/DAO/gamematchDAO.php';
+require_once 'view/match.php';
+
+$gameMatchDAO = new GameMatchDAO();
+$gameMatches = $gameMatchDAO->getGameMatches();
+
+foreach($gameMatches as $gameMatch){
+    printMatch($gameMatch);
+}
 
 
-// READ DATABASE
+//STARTING AGAIN LEGACY CODE READ DATABASE
 try {
     $conn = Connection::getConnection();
 
