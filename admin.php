@@ -23,7 +23,9 @@ $gameMatchDAO = new GameMatchDAO();
 $gameMatches = $gameMatchDAO->getGameMatches();
 
 foreach($gameMatches as $gameMatch){
+    ?> <div> <?php
     printMatch($gameMatch);
+    ?> </div> <?php
 }
 
 
