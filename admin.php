@@ -6,13 +6,11 @@
     <title>SMTH - Admin Panel</title>
 </head>
 <body>
-    aaaaa <br>    
 <a href="logout.php">Logout</a>
 
 <?php
 //legacy code
 require_once 'model/DAO/classes/connection.php';
-require_once 'model/DAO/classes/gamematch.php';
 
 //new code
 require_once 'model/DAO/classes/gamematch.php';
