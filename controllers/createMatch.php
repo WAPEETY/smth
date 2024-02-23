@@ -1,7 +1,11 @@
 <?php 
-session_start();
-require_once 'controller.php';
-require_once '../model/DAO/classes/gamematch.php';
+
+
+$server_root = $_SERVER['DOCUMENT_ROOT'];
+
+require_once $server_root . '/controllers/controller.php';
+require_once $server_root . '/model/DAO/classes/gamematch.php';
+require_once $server_root . '/model/DAO/gamematchDAO.php';
 
 check_login();
 

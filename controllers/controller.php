@@ -4,9 +4,8 @@ function check_login(){
     session_start();
     $page = basename($_SERVER['PHP_SELF']);
 
-    require_once 'config.php';
-    require_once 'model/DAO/classes/connection.php';
-    require_once 'model/DAO/adminDAO.php';
+    $server_root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $server_root . '/config.php';
 
     if(isset($_SESSION['admin'])){
         if($page == 'login'){
