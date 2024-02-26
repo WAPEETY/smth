@@ -55,6 +55,18 @@ class GameMatchDAO {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
+
+    public function getGameMatchByPlace($uuid){
+        $sql = "SELECT DISTINCT matches.id as mid, matches.name as mname FROM matches INNER JOIN qrs ON matches.id = qrs.match_id WHERE qrs.uuid = :uuid";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':uuid', $uuid);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result){
+            return new GameMatch($result['mid'], $result['mname']);
+        }
+        return null;
+    }
 }
 
 ?>

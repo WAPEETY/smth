@@ -66,12 +66,6 @@ try {
     $stmt_teams->execute();
     $teams = $stmt_teams->fetchAll(PDO::FETCH_ASSOC);
 
-    // Print values (only for testing purposes)
-    echo "<h2>Matches</h2>";
-    foreach ($matches as $match) {
-        echo "ID: " . $match['id'] . ", Name: " . $match['name'] . "<br>";
-    }
-
     echo "<h2>QRs</h2>";
     foreach ($qrs as $qr) {
         echo "ID: " . $qr['id'] . ", UUID: " . $qr['uuid'] . "<br>";
@@ -146,15 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_match'])) {
     <button type="submit">Add Team</button>
 </form>
 -->
-
-<h2>Create a Match</h2>
-    <form method="POST" action="admin.php">
-        <label for="match_name">Match Name:</label>
-        <input type="text" id="match_name" name="match_name">
-        <button type="submit" name="create_match">Create Match</button>
-    </form>
-
-
 
 </body>
 </html>

@@ -12,6 +12,7 @@
             $match = $matchDAO->getGameMatch($id);
             if($match){
                 include 'views/match.php';
+                printMatchPage($match);
             }else{
                 launch_404();
             }

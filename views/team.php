@@ -34,7 +34,7 @@ function addTeamForm($matchid){
     <form action="controllers/createTeam.php" method="post">
       <div class="mb-2 flex items-center gap-3">
         <input type="hidden" name="matchId" value="<?php echo $matchid; ?>"></input>
-        <input type="hidden" name="secret" value="<?php echo bin2hex(random_bytes(1)); ?>"></input>
+        <input type="hidden" name="secret" value="<?php echo bin2hex(random_bytes(4)); ?>"></input>
         <input type="text" name="teamName" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Team name">
         </input>
         <div class="center relative inline-block select-none whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white">

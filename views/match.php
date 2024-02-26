@@ -12,7 +12,7 @@ function printMatch($match, $printTeams = false)
   ?>
   <div class="basis-full m-3 mb-5 whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
     <div class="mb-2 flex items-center gap-3">
-      <a href="#" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors hover:text-pink-500">
+      <a href=" /match.php?id=<?php echo $match->getId(); ?>" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors hover:text-pink-500">
         Match: <?php echo $match->getName(); ?>
       </a>
       <div class="center relative inline-block whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white">
@@ -49,6 +49,7 @@ function createMatchForm()
   <div class="flex-2 mb-5 whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
     <form action="controllers/createMatch.php" method="post">
       <div class="mb-2 flex items-center gap-3">
+        <label>Create new match:</label>
         <input type="text" name="matchName" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Match name">
         </input>
         <div class="center relative inline-block select-none whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white">
@@ -57,6 +58,18 @@ function createMatchForm()
       </div>
     </form>
   </div>
+  <?php
+}
+
+function printMatchPage($match){
+  ?>
+  <p>THIS IS TEMPORARY, FROM HERE WE'LL MONITOR THE MATCH</p>
+  <div class="flex flex-col items-center justify-center">
+    <div class="flex-1">
+      <?php printMatch($match, true); ?>
+    </div>
+
+
   <?php
 }
 

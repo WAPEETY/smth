@@ -2,7 +2,7 @@
 
 function check_login(){
 
-    $allowedPages = array('index.php','login.php)');
+    $allowedPages = array('index.php','login.php');
     $adminAllowedPages = array('admin.php',
                                 'login.php', 
                                 'createMatch.php', 
