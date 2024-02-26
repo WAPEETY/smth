@@ -1,7 +1,9 @@
 <?php
 
-require_once 'model/DAO/classes/connection.php';
-require_once 'model/DAO/classes/team.php';
+$server_root = $_SERVER['DOCUMENT_ROOT'];
+
+require_once $server_root . '/model/DAO/classes/connection.php';
+require_once $server_root . '/model/DAO/classes/team.php';
 
 class TeamDAO {
     private $connection;
@@ -13,9 +15,14 @@ class TeamDAO {
     public function createTeam($team){
         $sql = "INSERT INTO teams (name, secret, match_id) VALUES (:name, :secret, :match_id)";
         $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':name', $team->getName());
-        $stmt->bindParam(':secret', $team->getSecret());
-        $stmt->bindParam(':match_id', $team->getMatchId());
+
+        $name = $team->getName();
+        $secret = $team->getSecret();
+        $match_id = $team->getMatchId();
+
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':secret', $secret);
+        $stmt->bindParam(':match_id', $match_id);
         $stmt->execute();
     }
 
@@ -34,6 +41,19 @@ class TeamDAO {
     public function getTeams(){
         $sql = "SELECT * FROM teams";
         $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $teams = array();
+        foreach($result as $row){
+            array_push($teams, new Team($row['id'], $row['name'], $row['secret'], $row['match_id']));
+        }
+        return $teams;
+    }
+
+    public function getTeamsByMatchId($matchId){
+        $sql = "SELECT * FROM teams WHERE match_id = :match_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':match_id', $matchId);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $teams = array();

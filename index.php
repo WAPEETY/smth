@@ -2,5 +2,8 @@
 include_once 'controllers/controller.php';
 check_login();
 
-include_once 'views/import.php';
+header('Location: /admin.php');
+
+//include_once 'views/import.php';
+
 ?>

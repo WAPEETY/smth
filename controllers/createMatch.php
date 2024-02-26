@@ -9,12 +9,13 @@ require_once $server_root . '/model/DAO/gamematchDAO.php';
 
 check_login();
 
-if (isset($_POST['createMatch'])) {
-    $name = $_POST['name'];
-    $gameMatch = new GameMatch($name);
+if (isset($_POST['matchName'])) {
+    $name = $_POST['matchName'];
+    
+    $gameMatch = new GameMatch(0,$name);
     $dao = new GameMatchDAO();
     $dao->createGameMatch($gameMatch);
-    header('Location: index.php');
+    header('Location: /index.php');
 }
 
 ?>
