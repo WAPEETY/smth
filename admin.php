@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+    require_once 'controllers/controller.php';
+    if(check_login()){
+    }else{
+        echo "You are not allowed to access this page";
+        header('Location: /login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +30,7 @@ require_once 'views/match.php';
 $gameMatchDAO = new GameMatchDAO();
 $gameMatches = $gameMatchDAO->getGameMatches();
 
-?><div class="flex flex-wrap"><?php
+?><div class="flex flex-col flex-wrap"><?php
 foreach($gameMatches as $gameMatch){
     ?> <div> <?php
     printMatch($gameMatch, true);

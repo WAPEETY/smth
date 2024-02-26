@@ -14,6 +14,16 @@
             SM Treasure Hunt
         </div>
     </a>
+
+    <?php
+
+if(isset($_SESSION['error'])){
+    echo '<div class="text-red-500 text-sm font-medium p-2 bg-red-100 rounded-lg mb-2 mt-2">'.$_SESSION['error'].'</div>';
+    unset($_SESSION['error']);
+}
+
+    ?>
+
     <div class="relative mt-12 w-full max-w-lg sm:mt-10">
         <div class="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"
             bis_skin_checked="1"></div>

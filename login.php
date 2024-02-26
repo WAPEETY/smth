@@ -9,6 +9,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
     $adminDAO = new AdminDAO();
     if($adminDAO->login($username, $password)){
+        $_SESSION['admin'] = true;
         header('Location: admin.php');
     }
     else{

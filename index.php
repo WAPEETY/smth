@@ -1,8 +1,12 @@
 <?php
+session_start();
 include_once 'controllers/controller.php';
-check_login();
+if(check_login()){
+    header('Location: /admin.php');
+}else{
+    header('Location: /login.php');
+}
 
-header('Location: /admin.php');
 
 //include_once 'views/import.php';
 

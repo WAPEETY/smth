@@ -21,7 +21,7 @@ function printTeam($team){
       class="center relative inline-block whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white"
       
     >
-      <div class="mt-px">Team secret: <?php $team->getSecret() ?></div>
+      <div class="mt-px">Team secret: <?php echo $team->getSecret() ?></div>
     </div>
   </div> 
 </div>
