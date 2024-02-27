@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 
 $server_root = $_SERVER['DOCUMENT_ROOT'];
 
