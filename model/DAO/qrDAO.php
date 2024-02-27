@@ -70,6 +70,19 @@ class QrDAO
     public function generateUuid(){
         return substr(md5(uniqid(rand(), true)), 0, 23);
     }
+
+    public function getAvailableTeams($qr_id){
+        $sql = "SELECT * FROM teams WHERE id NOT IN (SELECT team_id FROM questions WHERE qr_id = :qr_id)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':qr_id', $qr_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $teams = array();
+        foreach($result as $row){
+            array_push($teams, new Team($row['id'], $row['name'], $row['secret'], $row['match_id']));
+        }
+        return $teams;
+    }
 }
 
 

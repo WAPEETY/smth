@@ -75,8 +75,9 @@ function printMatchPage($match){
           <div class="mt-px">Match id: <?php echo $match->getId() ?></div>
         </div>
       </div>
-      <div class="flex flex-wrap gap-3">
-        Teams:
+      <div class="flex flex-wrap gap-3 flex-col">
+        <h3>Teams:</h3>
+        <div class="flex flex-wrap gap-3">
       <?php
       $dao = new TeamDAO();
       $teams = $dao->getTeamsByMatchId($match->getId());
@@ -87,9 +88,10 @@ function printMatchPage($match){
       }
       addTeamForm($match->getId());
       ?>
+      </div>
     </div>
-    <div class="flex flex-wrap gap-3">
-        Qr codes (Places):
+    <div class="flex flex-wrap gap-3 flex-col">
+        <h3>Qr codes (Places):</h3>
       <?php
       $dao = new QrDAO();
       $qrs = $dao->getQrsByMatchId($match->getId());

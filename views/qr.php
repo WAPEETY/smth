@@ -5,8 +5,10 @@ require_once 'import.php';
 require_once $documentRoot . '/model/DAO/teamDAO.php';
 require_once $documentRoot . '/model/DAO/classes/gamematch.php';
 require_once $documentRoot . '/views/team.php';
+require_once $documentRoot . '/views/question.php';
+require_once $documentRoot . '/model/DAO/questionsDAO.php';
 
-function printQr($qr){
+function printQr($qr, $teamId = null){
     ?>
   <div class="basis-full m-3 mb-5 whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
     <div class="mb-2 flex items-center gap-3">
@@ -14,10 +16,50 @@ function printQr($qr){
         Name: <?php echo $qr->getFriendlyName(); ?>
       </a>
       <div class="center relative inline-block whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white">
-        <div class="mt-px">Match id: <?php  echo $qr->getUUID(); ?></div>
+        <div class="mt-px">Qr uuid: <?php  echo $qr->getUUID(); ?></div>
       </div>
     </div>
-    <?php //here put all the related questions ?>
+    <?php
+      $questionDAO = new QuestionDAO();
+      if($teamId != null){
+        $questions = $questionDAO->getQuestion($teamId, $qr->getId());
+      }else{
+        $questionsDB = $questionDAO->getQuestionsByQrId($qr->getId());
+        $teamDao = new TeamDAO();
+
+        setupList();
+
+?>
+
+<div class="grid gap-3 py-8 text-lg leading-6 text-gray-800 md:gap-8 md:grid-cols-1">
+        <div class="space-y-3">
+
+<?php
+
+        foreach($questionsDB as $questionDB){
+          $question['id'] = $questionDB['id'];           
+          $question['question'] = $questionDB['question'];
+          $question['answers'] = $questionDB['answers'];
+          $question['hint'] = $questionDB['hint'];
+          $question['qr_id'] = $questionDB['qr_id'];
+          $question['team'] = $teamDao->getTeam($questionDB['team_id']);
+
+          printQuestionForCard($question);
+        }
+
+        //the max number of question is the number of teams 
+        if(count($questionsDB) < $teamDao->count('*')){
+          printAddQuestion($qr, $teamId);
+        }
+       
+        ?> 
+        </div>
+    </div>
+    <?php
+
+      }
+      
+    ?>
   </div>   
     <?php
 }

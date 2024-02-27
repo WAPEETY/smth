@@ -30,6 +30,14 @@ class QuestionDAO {
         return $this->getQuestion($team_id, $id);
     }
 
-
+    public function getQuestionsByQrId($qr_id){
+        $query = "SELECT * FROM questions WHERE qr_id = :qr_id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':qr_id', $qr_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $result;
+    }
     
 }

@@ -83,6 +83,15 @@ class TeamDAO {
         return null;
         
     }
+
+    public function count($option){
+        //NOT SQL INJECTION SAFE
+        $sql = "SELECT COUNT(".$option.") FROM teams";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 
 ?>
