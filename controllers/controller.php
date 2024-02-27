@@ -8,8 +8,11 @@ function check_login(){
                                 'createMatch.php', 
                                 'createQuestion.php', 
                                 'createTeam.php', 
-                                'createQR.php', 
-                                'match.php'
+                                'createQr.php', 
+                                'match.php',
+                                'team.php',
+                                'question.php',
+                                'qr.php'
                             );
 
 

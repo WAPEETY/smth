@@ -1,14 +1,29 @@
 <?php 
+session_start();
 
-include_once 'controller/controller.php';
+$server_root = $_SERVER['DOCUMENT_ROOT'];
 
-check_login();
+include_once $server_root . 'controller/controller.php';
+include_once $server_root . '/model/DAO/questionDAO.php';
 
-if(!isset($_POST['answer'])){
-    include 'views/question.php';
+if(!$_GET['place_uuid']){
+    launch_404();
 }
 else{
-    include 'views/hint.php';
-}
+    if(!check_login()){
+        launch_404();
+    }
+    else{
+        $teamid = $_SESSION['team'];
+        $place_uuid = $_GET['place_uuid'];
 
+        //ottengo la domanda per quel team dal db
+        $questionDAO = new QuestionDAO();
+        $question = $questionDAO->getQuestionByUUID($team_id, $place_uuid); //qui il testo della domanda
+
+        //qui printo la domanda
+        echo($question);
+
+        }
+    }
 ?>
