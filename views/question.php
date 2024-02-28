@@ -64,13 +64,11 @@ function printAddQuestion($qr, $teamId){
 
             <form action="controllers/createQuestion.php" method="post">
                 <input type="hidden" name="qrId" value="<?php echo $qr->getId(); ?>"></input>
-                <input type="hidden" name="teamId" value="<?php echo $teamId; ?>"></input>
-                <input type="text" name="question" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Question">
+                <input type="text" name="q_text" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Question">
                 </input>
                 <textarea name="answers" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Answers"></textarea>
                 <input type="text" name="hint" class="block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors" placeholder="Hint">
                 </input>
-                <input type="hidden" name="qrId" value="<?php echo $qr->getId(); ?>"></input>
                 <select name="teamId" class="mt-2 mb-2 block font-sans text-base font-medium leading-relaxed tracking-normal text-blue-gray-900 antialiased transition-colors">
                     <?php
                     foreach($availableTeams as $team){
@@ -83,7 +81,7 @@ function printAddQuestion($qr, $teamId){
                 <div class="center relative inline-block select-none whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white">
                     <input type="submit" value="submit" class="mt-px cursor-pointer"></input>
                 </div>
-
+            </form>
             </div>
     </div>
     
@@ -94,11 +92,6 @@ function printQuestionForCard($question){
     $server_root = $_SERVER['DOCUMENT_ROOT'];
     require_once $server_root . '/model/DAO/questionsDAO.php';
     ?>
-    
-    
-
-            
-            <!-- 1 -->
         <div x-data="accordion(<?php echo $question['id']?>)" class="relative transition-all duration-700 border rounded-xl hover:shadow-2xl">
             <div @click="handleClick()" class="w-full p-4 text-left cursor-pointer">
             <div class="flex items-center justify-between">
@@ -126,8 +119,6 @@ function printQuestionForCard($question){
                 </div>
             </div>
         </div>
-        <!-- End 1 -->
-
     <?php
 }
 ?>
