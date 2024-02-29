@@ -90,6 +90,7 @@ class TeamDAO {
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $result["COUNT(".$option.")"];
         return $result;
     }
 }

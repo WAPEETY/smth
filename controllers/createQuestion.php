@@ -10,6 +10,9 @@ function chechAnswers($ans){
     //     ["ans4", false],
     // ]
     $ans = json_decode($ans, true);
+
+    var_dump($ans);
+
     $correct = 0;
     foreach($ans as $a){
         if(!is_string($a[0]) || !is_bool($a[1])){
@@ -21,12 +24,11 @@ function chechAnswers($ans){
 $server_root = $_SERVER['DOCUMENT_ROOT'];
 require_once $server_root . '/controllers/controller.php';
 require_once $server_root . '/model/DAO/classes/question.php';
+require_once $server_root . '/model/DAO/questionsDAO.php';
 
 if(!check_login()){
     launch_404();
 }
-
-var_dump($_POST);
 
 if (isset($_POST['q_text'])) {
     $qrid = $_POST['qrId'];
@@ -35,17 +37,12 @@ if (isset($_POST['q_text'])) {
     $answers = $_POST['answers'];
     $hint = $_POST['hint'];
 
-    echo $question;
-    var_dump($question);
+    $question = new Question(-1, $question, $answers, $qrid, $teamid, $hint);
 
-    $question = new Question(-1, $qrid, $teamid, $question, $answers, $hint);
-
-    chechAnswers($question);
+    chechAnswers($question->getAnswers());
 
     $questionDao = new QuestionDAO();
-    //$questionDao->createQuestion($question);
-
-    var_dump($question);
+    $questionDao->createQuestion($question);
 
     header('Location: /views/admin.php');
     exit();

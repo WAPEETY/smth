@@ -109,12 +109,16 @@ function printQuestionForCard($question){
                     <ul style="
                         list-style-type: circle;
                     ">
-                        <li>It is a directive that initializes Alpine.js data.</li>
-                        <li>It is used to define a new component.</li>
-                        <li>It is used to define a new component.</li>
-                        <li style="
-                            list-style-type: disc;
-                        ">Corr.</li>
+                        
+                        <?php
+                        $answers = json_decode($question['answers'], true);
+
+                        foreach($answers as $answer){
+                            ?>
+                            <li <?php echo $answer[1] ? 'style="list-style-type: disc;"' : ''; ?> ><?php echo $answer[0]; ?></li>
+                            <?php
+                        }
+                        ?>
                     </ul>    
                 </div>
             </div>

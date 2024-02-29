@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+echo("sei in qr.php");
+
 $server_root = $_SERVER['DOCUMENT_ROOT'];
 
 include_once $server_root . 'controller/controller.php';
