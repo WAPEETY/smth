@@ -2,14 +2,18 @@
 
     $server_root = $_SERVER['DOCUMENT_ROOT'];
     require_once $server_root . '/model/DAO/teamDAO.php';
+    require_once $server_root . '/views/import.php';
+    //require_once $server_root . '/views/secret.php';
 
     if(isset($_POST['secret'])){
         $secret = $_POST['secret'];
+        echo($secret . "     ");
         $qruuid = $_POST['uuid'];
+        echo($qruuid);
         $teamDAO = new TeamDAO();
         $team = $teamDAO->getTeamBySecret($secret);
-    
-
+    }
+/*
         if($team){
             //qua hanno fatto il login correttamente quindi possono ricevere la domanda
             $_SESSION['team'] = $team->getId();
@@ -26,5 +30,5 @@
         launch_404();
     }
 
-
+*/
 ?>

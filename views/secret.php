@@ -36,7 +36,9 @@ unset($_SESSION['error']);
         </div>
         <div class="p-6 pt-0">
             <form action="/controllers/loginTeam.php" method="post">
-                <input type="hidden" name="uuid" value="<?php echo $place; ?>"></input>
+                <input type="hidden" name="uuid" value="<?php 
+                $place_tmp = $_GET['place_uuid'];
+                echo($place_tmp); ?>"></input> 
                 <div>
                     <div>
                         <div
