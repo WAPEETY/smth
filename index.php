@@ -16,7 +16,7 @@ if(isset($_GET['place_uuid'])){
         if(check_login()){
             header('Location: /admin.php');
         }else{
-            header('Location: 404/.php');
+            header('Location: /404.php');
         } 
     }
 } 
