@@ -3,7 +3,7 @@
     require_once 'controllers/controller.php';
     if(check_login()){
     }else{
-        echo "You are not allowed to access this page";
+        //echo "You are not allowed to access this page";
         header('Location: /login.php');
     }
 ?>
