@@ -70,18 +70,14 @@ class TeamDAO {
         $stmt->execute();
     }
 
-    //Da' aspetto una tua conferma per sta funzione
     public function getTeamBySecret($secret){
         $sql = "SELECT * FROM teams WHERE secret = :secret LIMIT 1";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':secret', $secret);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
-            return new Team($result['id'], $result['name'], $result['secret'], $result['match_id']);
-        }
-        return null;
-        
+        echo($result['id']); 
+        return $result['id'];        
     }
 
     public function count($option){
