@@ -13,7 +13,9 @@
         if($team){
             //qua hanno fatto il login correttamente quindi possono ricevere la domanda
             $_SESSION['team'] = $team->getId();
-            header(('Location: /qr.php?place_uuid='. $qruuid));  //crea la string prima!!
+            echo($qruuid);
+            $header = 'Location: /qr.php?place_uuid='. $qruuid;
+            header($header);
         }else{
             $_SESSION['error'] = 'Invalid secret';
             echo("sei un coglione, manco i secret sai scrivere");
