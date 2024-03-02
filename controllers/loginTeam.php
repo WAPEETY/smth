@@ -6,12 +6,10 @@
 
     if(isset($_POST['secret'])){
         $secret = $_POST['secret'];
-        echo($secret . "     ");
         $qruuid = $_POST['uuid'];
-        echo($qruuid);
         $teamDAO = new TeamDAO();
         $team = $teamDAO->getTeamBySecret($secret);
-        echo($team);
+        var_dump($team);
     }
 
     /*

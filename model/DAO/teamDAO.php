@@ -76,8 +76,7 @@ class TeamDAO {
         $stmt->bindParam(':secret', $secret);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo($result['id']); 
-        return $result['id'];        
+        return $result['id']; //FIXME: qua va costruito un object Team() e va ritornato, non un id :)
     }
 
     public function count($option){
