@@ -56,7 +56,7 @@ class QrDAO
     }
 
     public function getIdByUuid($uuid){
-        $sql = "SELECT id FROM qr WHERE uuid = :uuid LIMIT 1";
+        $sql = "SELECT id FROM qrs WHERE uuid = :uuid LIMIT 1";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':uuid', $uuid);
         $stmt->execute();

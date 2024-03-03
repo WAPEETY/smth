@@ -125,4 +125,43 @@ function printQuestionForCard($question){
         </div>
     <?php
 }
+
+function printQuestionForm($question, $place_uuid){
+    ?>
+    <h1 class="text-3xl font-bold text-gray-800 m-4"><?php echo $question['question']; ?></h1>
+        <form action="
+            <?php 
+            echo $_SERVER['PHP_SELF'] . '?place_uuid=' . $place_uuid;
+            ?>
+        "
+        method="post"
+        >
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 p-4">
+                <?php
+
+                $answers = json_decode($question['answers'], true);
+                $i = 0;
+
+                foreach($answers as $answer){
+                    ?>
+                    <label>
+                        <input type="radio" value="<?php echo $i?>" class="peer hidden" name="response">
+                
+                        <div class="hover:bg-gray-50 flex items-center justify-between px-4 py-2 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
+                            <h2 class="font-medium text-gray-700"><?php echo $answer[0]; ?></h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                    </label>
+                    <?php
+                    $i++;
+                }
+
+                ?>
+            </div>
+            <input type="submit" value="submit" class="ml-4 center relative inline-block select-none whitespace-nowrap rounded-full bg-purple-500 py-1 px-2 align-baseline font-sans text-xs font-medium capitalize leading-none tracking-wide text-white cursor-pointer"></input>
+        </form>
+    <?php
+}
 ?>

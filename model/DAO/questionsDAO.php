@@ -15,9 +15,10 @@ class QuestionDAO {
     }  
 
     public function getQuestion($team_id, $id){
-        $query = "SELECT * FROM questions WHERE id = :id AND team_id = :team_id";
+        $query = "SELECT * FROM questions WHERE qr_id = :id AND team_id = :team_id";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':team_id', $team_id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();

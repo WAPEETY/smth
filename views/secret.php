@@ -16,10 +16,9 @@
 </a>
 
 <?php
-
 if(isset($_SESSION['error'])){
-echo '<div class="text-red-500 text-sm font-medium p-2 bg-red-100 rounded-lg mb-2 mt-2">'.$_SESSION['error'].'</div>';
-unset($_SESSION['error']);
+    echo '<div class="text-red-500 text-sm font-medium p-2 bg-red-100 rounded-lg mb-2 mt-2">'.$_SESSION['error'].'</div>';
+    unset($_SESSION['error']);
 }
 
 ?>

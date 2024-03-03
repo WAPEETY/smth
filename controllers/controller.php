@@ -2,7 +2,7 @@
 
 function check_login(){
 
-    $allowedPages = array('index.php','login.php');
+    $allowedPages = array('index.php','login.php', 'qr.php');
     $adminAllowedPages = array('admin.php',
                                 'login.php', 
                                 'createMatch.php', 
@@ -11,8 +11,7 @@ function check_login(){
                                 'createQr.php', 
                                 'match.php',
                                 'team.php',
-                                'question.php',
-                                'qr.php'
+                                'question.php'
                             );
 
 
@@ -37,8 +36,13 @@ function check_login(){
 
     }
     else if(isset($_SESSION['team'])){
-        $_SESSION['error'] = 'Not implemented yet';
-        return false;
+        if(in_array($page, $allowedPages)){
+            return true;
+        }
+        else{
+            $_SESSION['error'] = 'You are not allowed to access this page';
+            return false;
+        }
     }
     else{
         $_SESSION['error'] = 'You are not allowed to access this page';
