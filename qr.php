@@ -21,8 +21,6 @@ else{
         $place_uuid = $_GET['place_uuid'];
         $questionDAO = new QuestionDAO();
         $question = $questionDAO->getQuestionByUUID($team_id, $place_uuid);
-        include_once $server_root . '/views/header.php';
-        include_once $server_root . '/views/import.php';
 
             if(isset($_POST['response'])){
                 $response = $_POST['response'];
@@ -40,6 +38,9 @@ else{
                     $ans = $ans[$response];
                     if($ans[1]){
                         ?>
+
+                        <?php include_once $server_root . '/views/header.php';
+                        include_once $server_root . '/views/import.php'; ?>
                         <div class="m-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                             <strong class="font-bold">Correct!</strong>
                             <span class="block sm:inline">Read the hint and then close this page!</span>
@@ -52,19 +53,27 @@ else{
 
                         <div class="m-4 px-4 py-3 rounded relative" role="alert">
                             <strong class="font-bold">Hint:</strong>
-                            <span class="block sm:inline"><?php echo $question['hint']; ?></span>
+                            <span class="block sm:inline" onclick="
+                                var text = '<?php echo $question['hint']; ?>';
+                                var dummy = document.createElement('textarea');
+                                document.body.appendChild(dummy);
+                                dummy.value = text;
+                                dummy.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(dummy);
+                                alert('Hint copied to clipboard');
+                            " ><?php echo $question['hint']; ?></span>
                             <?php
                             
-                            //TODO: click to copy
-                            //TODO: unset the session of the team
-
+                            $_SESSION['team'] = null;
+                            unset($_SESSION['team']);
+                            session_destroy();
                             ?>
                         </div>
 
                         <?php
                     }
                     else{
-                        //TODO: in the question page show the wrong answer message
                         $_SESSION['error'] = 'Wrong answer';
                         header('Location: /qr.php?place_uuid=' . $place_uuid);
                     }
@@ -76,6 +85,12 @@ else{
                 }
 
             }else{
+                include_once $server_root . '/views/header.php';
+                include_once $server_root . '/views/import.php';
+                if(isset($_SESSION['error'])){
+                    echo '<div class="text-red-500 text-sm font-medium p-2 bg-red-100 rounded-lg m-4">'.$_SESSION['error'].'</div>';
+                    unset($_SESSION['error']);
+                }
                 printQuestionForm($question, $place_uuid);
             }
         }
