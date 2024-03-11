@@ -82,9 +82,12 @@ class TeamDAO {
         return null;
     }
 
-    public function count($option){
-        //NOT SQL INJECTION SAFE
-        $sql = "SELECT COUNT(".$option.") FROM teams";
+    public function count($option, $matchId = null){
+        $sql = "SELECT COUNT(".$option.") FROM teams ";
+        if($matchId != null){
+            $sql .= "WHERE match_id = ".$matchId;
+        }
+        $sql .= ";";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -40,6 +40,7 @@ createMatchForm();
 ?></div><?php
 
 //STARTING AGAIN LEGACY CODE READ DATABASE
+/*
 try {
     $conn = Connection::getConnection();
 
@@ -96,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_match'])) {
     header("Location: admin.php");
     exit();
 }
-
+*/
 
 
 ?>

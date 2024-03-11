@@ -10,9 +10,6 @@ function chechAnswers($ans){
     //     ["ans4", false],
     // ]
     $ans = json_decode($ans, true);
-
-    var_dump($ans);
-
     $correct = 0;
     foreach($ans as $a){
         if(!is_string($a[0]) || !is_bool($a[1])){
@@ -44,7 +41,7 @@ if (isset($_POST['q_text'])) {
     $questionDao = new QuestionDAO();
     $questionDao->createQuestion($question);
 
-    header('Location: /views/admin.php');
+    header('Location: /admin.php');
     exit();
 }else{
     launch_404();

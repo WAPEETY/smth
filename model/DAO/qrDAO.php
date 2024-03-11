@@ -72,7 +72,7 @@ class QrDAO
     }
 
     public function getAvailableTeams($qr_id){
-        $sql = "SELECT * FROM teams WHERE id NOT IN (SELECT team_id FROM questions WHERE qr_id = :qr_id)";
+        $sql = "SELECT * FROM teams WHERE id NOT IN (SELECT team_id FROM questions WHERE qr_id = :qr_id) AND match_id = (SELECT match_id FROM qrs WHERE id = :qr_id)";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':qr_id', $qr_id);
         $stmt->execute();

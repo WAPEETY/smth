@@ -48,7 +48,7 @@ function printQr($qr, $teamId = null){
         }
 
         //the max number of question is the number of teams 
-        if(count($questionsDB) < $teamDao->count('*')){
+        if(count($questionsDB) < $teamDao->count('*', $qr->getMatchId())){
           printAddQuestion($qr, $teamId);
         }
        
