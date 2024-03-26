@@ -41,7 +41,9 @@ if (isset($_POST['q_text'])) {
     $questionDao = new QuestionDAO();
     $questionDao->createQuestion($question);
 
-    header('Location: /admin.php');
+    $return = "Location: /match.php?qr=" . $qrid . "&id=19";
+
+    header($return);
     exit();
 }else{
     launch_404();

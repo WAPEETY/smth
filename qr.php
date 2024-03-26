@@ -7,6 +7,7 @@ include_once $server_root . '/controllers/controller.php';
 include_once $server_root . '/model/DAO/questionsDAO.php';
 include_once $server_root . '/model/DAO/classes/question.php';
 include_once $server_root . '/views/question.php';
+include_once $server_root . '/model/DAO/classes/logger.php';
 
 if(!isset($_GET['place_uuid'])){
     launch_404();
@@ -17,10 +18,20 @@ else{
     }
     else{
         $team_id = $_SESSION['team'];
-        
         $place_uuid = $_GET['place_uuid'];
+
+        if(!is_numeric($team_id)){
+            launch_404();
+        }
+
+        Logger::getInstance()->info("params: { place_uuid: '$place_uuid' } -> QR PAGE LOGIN DONE");
+
         $questionDAO = new QuestionDAO();
         $question = $questionDAO->getQuestionByUUID($team_id, $place_uuid);
+
+        if(!$question){
+            launch_404();
+        }
 
             if(isset($_POST['response'])){
                 $response = $_POST['response'];
@@ -36,7 +47,11 @@ else{
                     }
 
                     $ans = $ans[$response];
+
+                    Logger::getInstance()->info("params: { place_uuid: '$place_uuid', team: '$team_id', response: '$response' } -> QR PAGE ANSWER SUBMITTED");
+
                     if($ans[1]){
+                        Logger::getInstance()->info("params: { place_uuid: '$place_uuid', team: '$team_id', response: '$response' } -> QR PAGE ANSWER CORRECT");
                         ?>
 
                         <?php include_once $server_root . '/views/header.php';
@@ -75,6 +90,7 @@ else{
                     }
                     else{
                         $_SESSION['error'] = 'Wrong answer';
+                        Logger::getInstance()->info("params: { place_uuid: '$place_uuid', team: '$team_id', response: '$response' } -> QR PAGE ANSWER WRONG");
                         header('Location: /qr.php?place_uuid=' . $place_uuid);
                     }
 
@@ -91,6 +107,7 @@ else{
                     echo '<div class="text-red-500 text-sm font-medium p-2 bg-red-100 rounded-lg m-4">'.$_SESSION['error'].'</div>';
                     unset($_SESSION['error']);
                 }
+                Logger::getInstance()->info("params: { place_uuid: '$place_uuid', team: '$team_id' } -> QR PAGE QUESTION FORM");
                 printQuestionForm($question, $place_uuid);
             }
         }

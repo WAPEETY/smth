@@ -1,6 +1,12 @@
 <?php
 
+$base_path = $_SERVER['DOCUMENT_ROOT'];
+
+include_once $base_path . '/model/DAO/classes/logger.php';
+
 function check_login(){
+
+    Logger::getInstance()->info("Checking login");
 
     $allowedPages = array('index.php','login.php', 'qr.php');
     $adminAllowedPages = array('admin.php',
@@ -31,6 +37,7 @@ function check_login(){
         }
         else{
             $_SESSION['error'] = 'You are not allowed to access this page';
+            Logger::getInstance()->error("User not allowed to access this page [admin]");
             return false;
         }
 
@@ -41,11 +48,13 @@ function check_login(){
         }
         else{
             $_SESSION['error'] = 'You are not allowed to access this page';
+            Logger::getInstance()->error("User not allowed to access this page [team]");
             return false;
         }
     }
     else{
         $_SESSION['error'] = 'You are not allowed to access this page';
+        Logger::getInstance()->error("User not allowed to access this page [no session]");
         return false;
     }
 }
